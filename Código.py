@@ -3,6 +3,7 @@
 from unidecode import unidecode
 
 registroAgenda=[]
+registroParcicipantes=[]
 
 def agregarApartados():
     listaApartados= []
@@ -83,11 +84,53 @@ def menuAgenda():
     return(imprimirAgenda())
 
 
+
+def menuParticipantes():
+    print("Se procede a realizar el registro de participantes\n")
+    
+    seguirPreguntando=1
+    posicionDondeAgregar=0
+    
+    while True:
+        participante = input("Agrege un participanta al registro por favor: ")
+        if not participante.isnumeric():
+            registroParcicipantes.insert(posicionDondeAgregar, participante)
+            posicionDondeAgregar+=1
+            break
+        else:
+            print("Por favor, ingrese un participante, no un número.\n")
+            
+    while seguirPreguntando==1:
+        while True:
+            respuesta = input('¿Desea ingresar otro punto? Digite "si" si desea hacerlo digite "no" si no lo desea hacer: ')
+            if unidecode(respuesta.lower()) == "si":
+                while True:
+                    participante = input("Agrege otro participante por favor: ")
+                    if not participante.isnumeric():
+                        registroParcicipantes.insert(posicionDondeAgregar, participante)
+                        posicionDondeAgregar+=1
+                        break
+                    else:
+                        print("Por favor, ingrese un participante, no un número.\n") 
+        
+            elif respuesta.lower() == "no":
+                print("\nEntendido no se agregarán más participantes al registro. La agendá terminó\n")
+                seguirPreguntando+=1
+                break
+            else:
+                print("Por favor, responda con 'si' o 'no'.\n")             
+    
+    return(print(registroParcicipantes))
+    
+    
+    
 """---------------------------------------------------------------------------------------------------------------------"""
 """Aquí empieza a ejecutarse el programa"""
 print("\n")
 print("Bienvenido a TextToSpeech para Sesiones de Órganos Colegiados\n")
-menuAgenda()
+#menuAgenda()
+menuParticipantes()
+
 
     
     
