@@ -1,9 +1,13 @@
 """Se debe intalar la libreria unicode, con el proposito de utilizar la función unicode para convertir textos a textos sin tíldes """
 #Hola
 from unidecode import unidecode
+from datetime import datetime
+
+now = datetime.now()
 
 registroAgenda=[]
 registroParcicipantes=[]
+
 
 def agregarApartados():
     listaApartados= []
@@ -44,7 +48,7 @@ def agregarPuntos():
                     else:
                         print("Por favor, ingrese un punto que no sea solo un número.\n") 
         
-            elif respuesta.lower() == "no":
+            elif unidecode(respuesta.lower()) == "no":
                 print("\nEntendido no se agregaán más puntos a este apartado")
                 seguirPreguntando+=1
                 break
@@ -122,7 +126,12 @@ def menuParticipantes():
     
     return(print(registroParcicipantes))
     
+
+def registroVoz():
+    return
     
+    
+      
     
 """---------------------------------------------------------------------------------------------------------------------"""
 """Aquí empieza a ejecutarse el programa"""
