@@ -23,37 +23,29 @@ def agregarParticipantes():
         permitirá ya que un usuario no puede ser un número. No posee ni argumentos ni return.
     
     """
-    print("\n Se procede a realizar el registro de participantes\n")
-    
+    print("\n Se procede a realizar el registro de participantes\n") 
     seguirPreguntando=1
-    posicionDondeAgregar=0
-    
     #Se realiza para que exista al menos un paticipante
     while True:
         participante = input("Agrege un participante al registro por favor: ")
         if not participante.isnumeric():
-            registroParcicipantes.insert(posicionDondeAgregar, participante)
-            posicionDondeAgregar+=1
+            registroParcicipantes.append(participante)
             break
         else:
-            print("Por favor, ingrese un participante, no un número.\n")
-            
+            print("Por favor, ingrese un participante, no un número.\n")      
     #Si se desean agregar más participante         
     while seguirPreguntando==1:
         while True:
-            respuesta = input('¿Desea ingresar otro punto? Digite "si" si desea hacerlo digite "no" si no lo desea hacer: ')
-            
+            respuesta = input('¿Desea ingresar otro participante? Digite "si" si desea hacerlo digite "no" si no lo desea hacer: ')
             #Si se desean agregar más participantes.
             if unidecode(respuesta.lower()) == "si":
                 while True:
                     participante = input("Agrege otro participante por favor: ")
                     if not participante.isnumeric():
-                        registroParcicipantes.insert(posicionDondeAgregar, participante)
-                        posicionDondeAgregar+=1
+                        registroParcicipantes.append(participante)
                         break
                     else:
-                        print("Por favor, ingrese un participante, no un número.\n") 
-                        
+                        print("Por favor, ingrese un participante, no un número.\n")             
             #Si no se desea agregar más participantes, no se agregarán.
             elif respuesta.lower() == "no":
                 print("\nEntendido no se agregarán más participantes al registro. La agendá terminó\n")
@@ -143,7 +135,7 @@ def masApartados():
         
             elif unidecode(respuesta.lower()) == "no":
                 print("\nEntendido no se agregarán más apartados.")
-                print("\n El registo de apartados ha terminado.")
+                print("\n El registo de agenda ha terminado.")
                 break
             else:
                 print("Por favor, responda con 'si' o 'no'.\n")           
@@ -425,7 +417,7 @@ def seguirReportes():
                     print('Responda con "si" o "no" únicamente')
     #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 #Primer reporte
-def imprimir_voz(apartados:list, puntos:list,voz:list):
+def imprimirVoz(apartados:list, puntos:list,voz:list):
     """Esta función permite imprimir lo dicho por cada participante en cada punto y en cada apartado. No contiene return.
     Args:
         apartados (list): Es la lista con los apartados y códigos/claves
@@ -444,7 +436,7 @@ def imprimir_voz(apartados:list, puntos:list,voz:list):
 def primerReporte():
     """Imprime el reporte con los argumentos necesarios.
     """
-    imprimir_voz(registroApartadosFinal,registroPuntos,registroVoz)
+    imprimirVoz(registroApartadosFinal,registroPuntos,registroVoz)
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 #Segundo reporte--------------------------------------------------------------------------------------------------------------------------------------------
 def obtenerRecuentoPalabras(personas:list, registro:list):
@@ -462,7 +454,7 @@ def obtenerRecuentoPalabras(personas:list, registro:list):
             if registroPersona[1] == persona:
                 palabrasDichas += len(registroPersona[4].split())
         # Buscamos si ya existe un elemento en recuento que corresponda a esta persona
-        existe_persona = False
+        existePersona = False
         for i in range(len(recuento)):
             if recuento[i][0] == persona:
                 recuento[i][1] += palabrasDichas
