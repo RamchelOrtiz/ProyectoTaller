@@ -5,7 +5,6 @@ import speech_recognition as sr
 from os import system
 
 #Variables Globales---------------------------------------------------------------------------------------------------------
-
 registroParcicipantes=[]
 registroApartados=[]
 registroApartadosFinal=[]
@@ -17,7 +16,6 @@ opciones=["La misma persona continua hablando","Otro miembro toma la palabra","E
 recuento=[]
 registroReportes=["Reporte 1","Reporte 2","Reporte 3"]
 #-------------------------------------------------------------------------------------------------------------------------
-
 #Sección de agenda---------------------------------------------------------------------------------------------------------
 def agregarParticipantes():
     """ Esta función permite agregar particiapantes, lo hace preguntando cada vez si desea agregar otro, debe indicarse con si o no, no importa la 
@@ -64,7 +62,6 @@ def agregarParticipantes():
             else:
                 print("Por favor, responda con 'si' o 'no'.\n")             
 
-
 def agregarCodigoapartado(apartado:list):
     """_Esta función genera un código para el apartado, este código es un número en formato str. Se genera una lista de la 
         siguiente manera ["1",Apartado], el siguiente ["2",Apartado]. Todo esto se agrega a registroApartadoFinal.
@@ -93,7 +90,6 @@ def agregarApartados():
         else:
             print("Por favor, ingrese un apartado, no un número.\n")
     
-
 def agregarPuntos(codigo:str):
     """ Esta función es la encargada de agregar los puntos a cada apartado, el primer punto es agregado de manera obligatoria,
         los demás se realizan mediante un ciclo, tiene que ingresar si o no para seguir agregando puntos, no importa de la manera
@@ -150,12 +146,9 @@ def masApartados():
                 print("\n El registo de apartados ha terminado.")
                 break
             else:
-                print("Por favor, responda con 'si' o 'no'.\n") 
-                
+                print("Por favor, responda con 'si' o 'no'.\n")           
 #-------------------------------------------------------------------------------------------------------------------------
-
  #Sección de reconociminto de voz----------------------------------------------------------------------------------------
- 
 def apartadoDeseado():
     """ Esta función imprime los apartados enumerados, el usuario debe escoger el apartado, digitando el índice correspondiente
         si no existe el índice o escribe texto, no lo permitirá y pedirá que lo vuelva a ingresar.No tiene argumentos o return.
@@ -185,8 +178,7 @@ def retornarClaveApartado(apartado:str):
     for i in registroApartadosFinal:
         if i[1] == apartado:
             return i[0]
-        
-        
+          
 def puntodoDeseado(apartado:str):
     """ Esta función enumera los puntos del apartado al que se ingresó previamente. Posee la función que solo permita ingresar
         índice válidos.
@@ -207,9 +199,7 @@ def puntodoDeseado(apartado:str):
                     
         except:
             print("El índice indicado no es válido.")
-      
-
-        
+         
 def retornarClavePunto(punto:str,apartado:str):
     """Permite retorna el código/clave del punto deseado.
     Args:
@@ -222,7 +212,6 @@ def retornarClavePunto(punto:str,apartado:str):
         if i[1]==punto and i[2]==apartado:
             return i[0],apartado
 
-
 def generarClaves():
     """Esta función es la que permite obtener las códigos/claves del apartado y el punto deseado.
     Returns:
@@ -233,7 +222,6 @@ def generarClaves():
     clavePunto,claveApartado=retornarClavePunto(Punto,Apartado)
     return clavePunto ,claveApartado
 
-
 def obtenerParticipante():
     """ Esta función permite obtener el participante mediante un menú desplegable enumerado.
         Solo permite ínidices válidos.
@@ -243,8 +231,7 @@ def obtenerParticipante():
     """
     print("\n")
     for i, participante in enumerate(registroParcicipantes):
-        print(str(i) + ": " + participante)
-        
+        print(str(i) + ": " + participante)     
     while True:
         try:
             indice = int(input("Indica quien participantes escribiendo tu índice correspondiente: "))
@@ -253,7 +240,6 @@ def obtenerParticipante():
         except:
             print("El índice indicado no es válido.")
     return(participante)
-
 
 def registroFecha():
     """Esta función genera la hora en formato %H:%M:%S.
@@ -265,8 +251,7 @@ def registroFecha():
     return horaActual      
 
 def hablar():
-    """Esta función utiliza speech_recognition para guardar lo que se dice mediante el micrófono.
-    
+    """Esta función utiliza speech_recognition para guardar lo que se dice mediante el micrófono.  
     Returns:
         _str_: Lo que se dijo en texto.
     """
@@ -362,8 +347,7 @@ def siguienteAccion(claves:tuple):
                 else:
                     raise ValueError
             except:
-                print("El índice indicado no es válido.") 
-                    
+                print("El índice indicado no es válido.")                    
 def seguirReconociendo():
     """ Esta función permite continuar realizando reconocimiento, se debe indicar mediante si o no, no importa la manera en la que estas
         respuestas sean escritas, el programa las detectará de manera válida. Si se digita que sí se termina el reconocimiento.
@@ -388,9 +372,7 @@ def seguirReconociendo():
                 print('Responda con "si" o "no" únicamente')
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 #Sección de reportes-----------------------------------------------------------------------------------------------------------------------------------------
-
 #Menú reportes:
 def menuReportes():
     """Esta función genera un menú desplegable enumera con índices, el cual contiene las opciones de los reportes. No contiene return.
@@ -399,8 +381,7 @@ def menuReportes():
     """
     print("\n")
     for i, opcion in enumerate(registroReportes):
-        print(f"{i+1}: {opcion}")
-                
+        print(f"{i+1}: {opcion}")               
     while True:
         try:
             indice=int(input("\nIngrese el índice correspondiente al reporte que desea realizar: "))
@@ -420,8 +401,7 @@ def menuReportes():
                 raise ValueError
         except:
             print("El índice indicado no es válido.")    
- 
-       
+     
 def seguirReportes():
     """ Esta función pregunta al usuario si desea seguir imprimiendo reportes, mediante la escritura de si o no, no importa la forma en 
         la que se digiten estos, el programa lo reconocerá como válido. Si se digita que no se termina el programa. No contiene return.
@@ -445,7 +425,6 @@ def seguirReportes():
                     print('Responda con "si" o "no" únicamente')
     #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 #Primer reporte
-
 def imprimir_voz(apartados:list, puntos:list,voz:list):
     """Esta función permite imprimir lo dicho por cada participante en cada punto y en cada apartado. No contiene return.
     Args:
@@ -467,7 +446,6 @@ def primerReporte():
     """
     imprimir_voz(registroApartadosFinal,registroPuntos,registroVoz)
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
-
 #Segundo reporte--------------------------------------------------------------------------------------------------------------------------------------------
 def obtenerRecuentoPalabras(personas:list, registro:list):
     """Esta función obtiene la cantidad de palabras que cada persona dijo durante todo elvreconocimiento.
@@ -519,7 +497,6 @@ def segundoReporte():
         print(elemento[0], "con", elemento[1],"palabras")
         print("\n")
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
-
 #Tercer reporte
 def contarHablado(apartados:list, puntos:list, usuarios:list, voz:list):
     """Cuenta la cantidad de veces que cada usuario habló en cada punto.
@@ -546,11 +523,7 @@ def tercerReporte():
     """Realiza el reporte con los argumentos necesarios.
     """
     contarHablado(registroApartadosFinal,registroPuntos,registroParcicipantes,registroVoz)
-
-
-
 #------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 def ejecuciónPrograma():
     """Aquí se encuentran las funciones en el orden necesario para ejecutar el programa.
     """
